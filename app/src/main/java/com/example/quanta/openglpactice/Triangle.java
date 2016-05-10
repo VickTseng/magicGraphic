@@ -8,12 +8,7 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.opengles.GL10;
 
 /**
- * This class is an object representation of
- * a Triangle containing the vertex information
- * and drawing functionality, which is called
- * by the renderer.
- *
- * @author Savas Ziplies (nea/INsanityDesign)
+ * Created by vick on 2016/5/5.
  */
 public class Triangle {
 

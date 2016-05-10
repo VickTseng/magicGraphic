@@ -11,17 +11,21 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity {
+/* To specify to GLSurface field range*/
+enum surfaceType {
+    FULL_SCERRN,
+    PARTIAL_SRUFACE
+}
+
+public class MainActivity extends AppCompatActivity {
 
     private GLSurfaceView glSurface;
+    surfaceType surfacetype;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        glSurface = new GLSurfaceView(this);
-        glSurface.setRenderer(new GLRender());
-
-        setContentView(glSurface);
+        initView(surfacetype.PARTIAL_SRUFACE);
     }
 
     /**
@@ -42,4 +46,20 @@ public class MainActivity extends Activity {
         glSurface.onPause();
     }
 
+    private void initView(surfaceType surType){
+        switch(surType){
+            case FULL_SCERRN:
+                glSurface = new GLSurfaceView(this);
+                glSurface.setRenderer(new GLRender());
+                setContentView(glSurface);
+                break;
+            case PARTIAL_SRUFACE:
+                setContentView(R.layout.activity_main);
+                Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                setSupportActionBar(toolbar);
+                glSurface = (GLSurfaceView) findViewById(R.id.surfaceView);
+                glSurface.setRenderer(new GLRender());
+                break;
+        }
+    }
 }
